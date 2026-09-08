@@ -1,5 +1,6 @@
+import { DeleteOutlined, EditOutlined } from '@ant-design/icons'
 import type { TableColumnsType } from 'antd'
-import { Tooltip, Typography } from 'antd'
+import { Button, Flex, Popconfirm, Tooltip, Typography } from 'antd'
 
 import { formatDateTime, formatPriceRial, formatWeightTon } from '@/shared/lib/format'
 
@@ -8,7 +9,17 @@ import { CargoOrderStatusTag } from './CargoOrderStatusTag'
 
 const { Text } = Typography
 
-export const createCargoOrdersColumns = (): TableColumnsType<CargoOrder> => [
+interface CargoOrdersColumnsOptions {
+  onEdit: (order: CargoOrder) => void
+  onDelete: (order: CargoOrder) => void
+  deletingOrderId: number | null
+}
+
+export const createCargoOrdersColumns = ({
+  onEdit,
+  onDelete,
+  deletingOrderId,
+}: CargoOrdersColumnsOptions): TableColumnsType<CargoOrder> => [
   {
     title: 'ID',
     dataIndex: 'id',
@@ -72,5 +83,31 @@ export const createCargoOrdersColumns = (): TableColumnsType<CargoOrder> => [
     width: 170,
     responsive: ['xxl'],
     render: (createdAt: string) => <Text type="secondary">{formatDateTime(createdAt)}</Text>,
+  },
+  {
+    title: 'Actions',
+    key: 'actions',
+    width: 170,
+    fixed: 'right',
+    render: (_value, order) => (
+      <Flex gap={4}>
+        <Button size="small" type="text" icon={<EditOutlined />} onClick={() => onEdit(order)}>
+          Edit
+        </Button>
+
+        <Popconfirm
+          title="Delete this cargo order?"
+          description={`"${order.goods_name}" will be removed permanently.`}
+          okText="Delete"
+          cancelText="Cancel"
+          okButtonProps={{ danger: true, loading: deletingOrderId === order.id }}
+          onConfirm={() => onDelete(order)}
+        >
+          <Button size="small" type="text" danger icon={<DeleteOutlined />}>
+            Delete
+          </Button>
+        </Popconfirm>
+      </Flex>
+    ),
   },
 ]
