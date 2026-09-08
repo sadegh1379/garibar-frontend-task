@@ -22,3 +22,11 @@ export const CARGO_ORDER_STATUS_OPTIONS = CARGO_ORDER_STATUSES.map((status) => (
   value: status,
   label: CARGO_ORDER_STATUS_LABELS[status],
 }))
+
+/** Sentinel for the "All" entry of the status filter, since `undefined` is not selectable. */
+export const ALL_STATUSES = 'all'
+
+export const CARGO_ORDER_STATUS_FILTER_OPTIONS = [
+  { value: ALL_STATUSES, label: 'All statuses' },
+  ...CARGO_ORDER_STATUS_OPTIONS,
+]
