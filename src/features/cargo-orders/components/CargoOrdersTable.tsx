@@ -29,9 +29,9 @@ export const CargoOrdersTable = ({
   onPaginationChange,
   onResetFilters,
 }: CargoOrdersTableProps) => (
-  <Table
+  <Table<CargoOrder>
     rowKey="id"
-    size="medium"
+    size="middle"
     columns={columns}
     dataSource={orders}
     loading={isLoading}
@@ -47,6 +47,7 @@ export const CargoOrdersTable = ({
           {hasActiveFilters ? <Button onClick={onResetFilters}>Reset filters</Button> : null}
         </Empty>
       ),
+
     }}
     pagination={{
       current: page,
