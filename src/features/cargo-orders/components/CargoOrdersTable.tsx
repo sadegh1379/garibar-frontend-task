@@ -29,7 +29,7 @@ export const CargoOrdersTable = ({
   onPaginationChange,
   onResetFilters,
 }: CargoOrdersTableProps) => (
-  <Table<CargoOrder>
+  <Table
     rowKey="id"
     size="medium"
     columns={columns}

@@ -68,7 +68,7 @@ export const CargoOrderFormModal = ({
       destroyOnHidden
       width={640}
     >
-      <Form<CargoOrderFormValues>
+      <Form
         form={form}
         layout="vertical"
         initialValues={createFormInitialValues(order)}
@@ -111,7 +111,7 @@ export const CargoOrderFormModal = ({
             { type: 'number', min: 0.01, message: 'Weight must be greater than 0' },
           ]}
         >
-          <InputNumber<number> min={0} placeholder="18" style={{ width: '100%' }} />
+          <InputNumber min={0} placeholder="18" style={{ width: '100%' }} />
         </Form.Item>
 
         <Form.Item
@@ -127,7 +127,7 @@ export const CargoOrderFormModal = ({
             ) : null
           }
         >
-          <InputNumber<number> min={0} step={1_000_000} placeholder="85000000" style={{ width: '100%' }} />
+          <InputNumber min={0} step={1_000_000} placeholder="85000000" style={{ width: '100%' }} />
         </Form.Item>
 
         <Form.Item

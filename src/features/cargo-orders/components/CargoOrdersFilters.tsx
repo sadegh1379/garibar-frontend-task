@@ -51,10 +51,10 @@ export const CargoOrdersFilters = ({
     <Row gutter={[16, 12]} align="bottom">
       <Col xs={24} sm={12} lg={5}>
         <FilterField label="Status">
-          <Select<StatusFilterValue>
+          <Select
             value={status ?? ALL_STATUSES}
             options={CARGO_ORDER_STATUS_FILTER_OPTIONS}
-            onChange={(value) => onStatusChange(value === ALL_STATUSES ? undefined : value)}
+            onChange={(value: StatusFilterValue) => onStatusChange(value === ALL_STATUSES ? undefined : value)}
             style={{ width: '100%' }}
           />
         </FilterField>
